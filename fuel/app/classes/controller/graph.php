@@ -27,7 +27,6 @@ class Graph {
     public $max = 10000000;
     
     public $site_list = array(
-//        'OOS', 'GNS', 'TRS', 'HNS', 'OQS', 'KJS', 'O2S'
         'サイト１', 'サイト２', 'サイト３', 'サイト４', 'サイト５', 'サイト６', 'サイト７'
     );
     public $pf_list = array(
@@ -36,17 +35,6 @@ class Graph {
     
     //各サイトのグラフの色
     public $color_list = array(
-        /*
-        'site'     => array(
-            'OOS' => '#7E1717',
-            'GNS' => '#694585',
-            'TRS' => null,
-            'HNS' => null,
-            'OQS' => '#9acd32',
-            'KJS' => '#ffa500',
-            'O2S' => null,
-        ),
-        */
         'platform' => array(
             'GREE'       => null,
             'Mobage'     => null,
@@ -233,13 +221,13 @@ class Graph {
                 'categories' => array('2013/01/01', '2013/01/02', '2013/01/03', '2013/01/04', '2013/01/05', '2013/01/06', '2013/01/07')
             ),
             'series' => array(
-                array('name' => 'OOS', 'color' => '#7E1717', 'data' => $this->rand_fnc()),
-                array('name' => 'GNS', 'color' => '#694585', 'data' => $this->rand_fnc()),
-                array('name' => 'TRS', 'data' => $this->rand_fnc()),
-                array('name' => 'HNS', 'data' => $this->rand_fnc()),
-                array('name' => 'OQS', 'color' => '#9acd32', 'data' => $this->rand_fnc()),
-                array('name' => 'KJS', 'color' => '#ffa500', 'data' => $this->rand_fnc()),
-                array('name' => 'O2S', 'color' => '#690714', 'data' => $this->rand_fnc()),
+                array('name' => 'サイト１', 'color' => '#7E1717', 'data' => $this->rand_fnc()),
+                array('name' => 'サイト２', 'color' => '#694585', 'data' => $this->rand_fnc()),
+                array('name' => 'サイト３', 'data' => $this->rand_fnc()),
+                array('name' => 'サイト４', 'data' => $this->rand_fnc()),
+                array('name' => 'サイト５', 'color' => '#9acd32', 'data' => $this->rand_fnc()),
+                array('name' => 'サイト６', 'color' => '#ffa500', 'data' => $this->rand_fnc()),
+                array('name' => 'サイト７', 'color' => '#690714', 'data' => $this->rand_fnc()),
                 
             ),
         );
