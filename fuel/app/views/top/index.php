@@ -1,15 +1,20 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>サイト別，プラットフォーム別売上げデータグラフ</title>
-    <style>
-        label {
-            display:inline;
-        }
-    </style>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-    <script type="text/javascript">
+<style>
+    label {
+        display:inline;
+    }
+    footer {
+        position: fixed !important;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 20px;
+        background-color: #000;
+        text-align: right;
+        color: #999;
+    }    
+</style>
+<script type="text/javascript">
 
 var makeHighChartYAxisLabel = function(value) {
     var ret;
@@ -31,7 +36,7 @@ function chart(graphData, grapType) {
             renderTo: 'container1',
             type: grapType,
             marginRight: 130,
-            marginBottom: 25            
+            marginBottom: 45            
         },
         title: {
             text: graphData['title'],
@@ -73,10 +78,10 @@ function chart(graphData, grapType) {
             }
         },        
         legend: {
-            align: 'right',
-            x: -100,
-            verticalAlign: 'top',
-            y: 20,
+            align: 'center',
+            x: 0,
+            verticalAlign: 'bottom',
+            y: 15,
             floating: true,
             backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColorSolid) || 'white',
             borderColor: '#CCC',
@@ -117,7 +122,7 @@ function chart(graphData, grapType) {
 
         chart_format['yAxis'].push({
                 title: {
-                    text: 'トータルデータ'
+                    text: '日別合計金額'
                 },
                 labels: {
                     formatter: function() {
@@ -137,39 +142,50 @@ function chart(graphData, grapType) {
     chart = new Highcharts.Chart(chart_format);
     
 }
-    </script>
-</head>
-<body>
+</script>
 <script src="http://code.highcharts.com/highcharts.js"></script>
 <script src="http://code.highcharts.com/modules/exporting.js"></script>
-
-<h1>グラフ切り替えテスト</h1>
-<h2>検索用</h2>
-<form>
-    <div class="row">
-        <div class="span2">
-            <?php (\Input::get('graph_type') == 'site')? $checked = 'checked': $checked = ''; ?>
-            <input id="radio_site" type="radio" name="type" value="site" <?php echo $checked;?>>
-            <label for="radio_site">サイト別</label>
-        </div>
-        <div class="span2">
-            <?php (\Input::get('graph_type') == 'platform')? $checked = 'checked':$checked ='';?>
-            <input id="radio_pl" type="radio" name="type" value="platform" <?php echo $checked;?>>
-            <label for="radio_pl">プラットフォーム別 </label>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand">グラフ切り替え</a>
         </div>
     </div>
-    <div class="row">
-        <div class="span2">
-            <input id="radio_grap_column" type="radio" name="graph" value="1" checked>
-            <label for="radio_grap_column">積み上げグラフ</label>
+</div>
+<div class="container">
+    <h1>グラフ切り替えテスト</h1>
+    <h2>検索用</h2>
+    <form>
+        <div class="row">
+            <div class="span2">
+                <?php (\Input::get('graph_type') == 'site')? $checked = 'checked': $checked = ''; ?>
+                <input id="radio_site" type="radio" name="type" value="site" <?php echo $checked;?>>
+                <label for="radio_site">サイト別</label>
+            </div>
+            <div class="span2">
+                <?php (\Input::get('graph_type') == 'platform')? $checked = 'checked':$checked ='';?>
+                <input id="radio_pl" type="radio" name="type" value="platform" <?php echo $checked;?>>
+                <label for="radio_pl">プラットフォーム別 </label>
+            </div>
         </div>
-        <div class="span2">
-            <input id="radio_grap_line" type="radio" name="graph" value="2">
-            <label for="radio_grap_line">折れ線グラフ</label>
+        <div class="row">
+            <div class="span2">
+                <input id="radio_grap_column" type="radio" name="graph" value="1" checked>
+                <label for="radio_grap_column">積み上げグラフ</label>
+            </div>
+            <div class="span2">
+                <input id="radio_grap_line" type="radio" name="graph" value="2">
+                <label for="radio_grap_line">折れ線グラフ</label>
+            </div>
         </div>
+    </form>
+    <div id="container1" style="min-width: 300px; height: 450px; margin: 0 auto" stroke-width="0.000001"></div>
     </div>
-</form>
-<div id="container1" style="min-width: 300px; height: 400px; margin: 0 auto"></div>
 
 </body>
 <script>
